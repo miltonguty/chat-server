@@ -1,17 +1,29 @@
 import { createServer } from "http"
+import express from "express";
 import { Server } from "socket.io"
 import userRute from "./src/rutes/users.js"
 import messageRute from "./src/rutes/messages.js"
 import { NAME_ROOM } from "./src/Constants.js"
+const app = express();
+const httpServer = createServer(app);
 
-const httpServer = createServer();
+app.get("/", (req, res) => {
+
+    const datas = {
+        client: process.env.CLIENT_URL,
+        port: 4000
+    }
+    res.json(datas);
+
+
+});
 const io = new Server(httpServer, {
 
     cors: {
         origin: process.env.CLIENT_URL
     }
 });
-
+httpServer.get
 io.on('connection', (socket) => {
     if (socket.recovered) {
         console.info("recovered connection   ---> " + socket.id)
