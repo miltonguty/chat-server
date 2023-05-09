@@ -8,7 +8,7 @@ const httpServer = createServer();
 const io = new Server(httpServer, {
 
     cors: {
-        origin: "http://localhost:3000"
+        origin: process.env.CLIENT_URL
     }
 });
 
@@ -28,5 +28,5 @@ io.on("disconnect", (reason) => {
 });
 
 httpServer.listen(4000, () => {
-    console.log('listening on *:4000')
+    console.log('listening on *:4000 na d waiting client ' + process.env.CLIENT_URL)
 });
