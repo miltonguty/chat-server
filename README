@@ -1,0 +1,10 @@
+# reset DB 
+rm prisma/dev.db
+npx prisma generate
+npx prisma migrate dev --skip-seed
+npx prisma db seed
+
+# start commands
+    npm run start
+# 
+#
